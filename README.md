@@ -3,7 +3,9 @@
 ## RUNNING THE PROGRAM ##
 
 -Create a new user in a linux shell
+
 -Give this user a password that you know is in the dictionary
+
 -Run the program using the following command:
 
 > sudo python assignment2.py [username] [path of shadow file]
