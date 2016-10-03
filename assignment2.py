@@ -32,25 +32,29 @@ def openFile(file):
 
 ### MAIN SCRIPT ###
 
-if len(sys.argv) < 3:
-   sys.exit("Error: Invalid Arguments.")
-else:
+if __name__ == '__main__':
+   import crypt
+   import sys
 
-   # SELECT DICTIONARY FILE
-   dictPath = "./dictionary.txt"
+   if len(sys.argv) < 3:
+      sys.exit("Error: Invalid Arguments.")
+   else:
 
-   if len(sys.argv) > 3:
-      if sys.argv[3] == "-d" and len(sys.argv) > 4:
-         dictPath = sys.argv[4]
+      # SELECT DICTIONARY FILE
+      dictPath = "./dictionary.txt"
+
+      if len(sys.argv) > 3:
+         if sys.argv[3] == "-d" and len(sys.argv) > 4:
+            dictPath = sys.argv[4]
       else:
          sys.exit("Error: Invalid Arguments.")
 
 
-   shadow = openFile(sys.argv[2])     #opens shadow file
-   hash = getHashed(shadow)             #gets password hash of file
-   encrypt = hash.split("$")
+      shadow = openFile(sys.argv[2])     #opens shadow file
+      hash = getHashed(shadow)             #gets password hash of file
+      encrypt = hash.split("$")
 
-   ctype = encrypt[1]       #hash properties
-   salt = encrypt[2]        #hash properies
+      ctype = encrypt[1]       #hash properties
+      salt = encrypt[2]        #hash properies
 
-   crackShadow(hash, dictPath, ctype, salt)
+      crackShadow(hash, dictPath, ctype, salt)
