@@ -1,4 +1,4 @@
-def getHashed(shadow):
+def get_hashed(shadow):
    for line in shadow:
       line = line.split(":")
 
@@ -11,7 +11,7 @@ def getHashed(shadow):
    sys.exit("Warning: User Does Not Exist.")
 
 
-def crackShadow(hash, dictPath, ctype, salt):
+def crack_shadow(hash, dictPath, ctype, salt):
    insalt = '${}${}$'.format(ctype, salt)
 
    dict = openFile(dictPath)
@@ -22,7 +22,7 @@ def crackShadow(hash, dictPath, ctype, salt):
    sys.exit("Warning: Password Not Found In Dictionary.")
 
 
-def openFile(file):
+def open_file(file):
    if os.path.isfile(file):
       return open(file, 'r')
    else:
@@ -50,11 +50,11 @@ if __name__ == '__main__':
          sys.exit("Error: Invalid Arguments.")
 
 
-      shadow = openFile(sys.argv[2])     #opens shadow file
-      hash = getHashed(shadow)             #gets password hash of file
+      shadow = open_file(sys.argv[2])     #opens shadow file
+      hash = get_hashed(shadow)             #gets password hash of file
       encrypt = hash.split("$")
 
       ctype = encrypt[1]       #hash properties
       salt = encrypt[2]        #hash properies
 
-      crackShadow(hash, dictPath, ctype, salt)
+      crack_shadow(hash, dictPath, ctype, salt)
